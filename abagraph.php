@@ -3,7 +3,7 @@
 Plugin Name: ABAgraph
 Description: Graphing for Applied Behavioral Analysis for Autism. Requires php-image-graph, php-image-canvas, php-gd, php-pear, Image_Color. ABAgraph grew out of Simple Graph by Pasi Matilainen. 
 Author: Ray Holland 
-Version: 0.9 
+Version: 0.9.1 
 Author URI: http://abacms.org/
 */ 
 
@@ -171,7 +171,7 @@ function aba_managePanel() {
 add_action('admin_menu','aba_managePanel');
 
 function aba_show_manage_panel() {
-global $wpdb, $current_user;
+global $wpdb, $current_user, $wp_version;
 $table_prefix = $wpdb->prefix;
 if (isset($_GET['abagraph_delete'])) { 
 $item_id = $_GET['abagraph_delete'];
@@ -390,7 +390,18 @@ $valueset = $wpdb->get_results($sql);
 <td><?php echo $values->activity; ?></td>
 <td><?php echo date("m.d.Y",$values->stamp); ?></td>
 <td><?php echo $values->value; ?></td>
+<?php
+if ($wp_version == "2.7") {
+?>
+<td><a href="tools.php?page=abagraph.php&amp;abagraph_delete=<?php echo $values->id; ?>"" onClick="return confirm('Delete Value?')""><?php _e(' Delete'); ?></a></td>
+<?php
+}
+else {
+?>
 <td><a href="edit.php?page=abagraph.php&amp;abagraph_delete=<?php echo $values->id; ?>"" onClick="return confirm('Delete Value?')""><?php _e(' Delete'); ?></a></td>
+<?php
+}
+?>
 </tr>	
 <?php 
 }
