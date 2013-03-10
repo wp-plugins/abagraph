@@ -3,7 +3,7 @@ Contributors: pacius, rayholland
 Donate link: http://abacms.org/
 Tags: ABA graph, Applied Behavioral Analysis 
 Requires at least: 2.0
-Tested up to: 2.7 
+Tested up to: 3.5.1 
 Stable tag: 0.9.1
 
 Graphing for Applied Behavioral Analysis (ABA) for Autism. 
